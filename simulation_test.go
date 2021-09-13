@@ -1,4 +1,4 @@
-package bolt_test
+package bolt
 
 import (
 	"bytes"
@@ -6,8 +6,6 @@ import (
 	"math/rand"
 	"sync"
 	"testing"
-
-	"github.com/boltdb/bolt"
 )
 
 func TestSimulate_1op_1p(t *testing.T)     { testSimulate(t, 1, 1) }
@@ -119,10 +117,10 @@ func testSimulate(t *testing.T, threadCount, parallelism int) {
 	wg.Wait()
 }
 
-type simulateHandler func(tx *bolt.Tx, qdb *QuickDB)
+type simulateHandler func(tx *Tx, qdb *QuickDB)
 
 // Retrieves a key from the database and verifies that it is what is expected.
-func simulateGetHandler(tx *bolt.Tx, qdb *QuickDB) {
+func simulateGetHandler(tx *Tx, qdb *QuickDB) {
 	// Randomly retrieve an existing exist.
 	keys := qdb.Rand()
 	if len(keys) == 0 {
@@ -157,7 +155,7 @@ func simulateGetHandler(tx *bolt.Tx, qdb *QuickDB) {
 }
 
 // Inserts a key into the database.
-func simulatePutHandler(tx *bolt.Tx, qdb *QuickDB) {
+func simulatePutHandler(tx *Tx, qdb *QuickDB) {
 	var err error
 	keys, value := randKeys(), randValue()
 

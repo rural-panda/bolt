@@ -17,7 +17,7 @@ var (
 	ErrInvalid = errors.New("invalid database")
 
 	// ErrVersionMismatch is returned when the data file was created with a
-	// different version of Bolt.
+	// different version of
 	ErrVersionMismatch = errors.New("version mismatch")
 
 	// ErrChecksum is returned when either meta page checksum does not match.

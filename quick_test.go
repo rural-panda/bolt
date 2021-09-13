@@ -1,4 +1,4 @@
-package bolt_test
+package bolt
 
 import (
 	"bytes"
